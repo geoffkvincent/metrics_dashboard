@@ -1,10 +1,11 @@
 import React from "react";
-import { Menu, } from "semantic-ui-react"
+import { Menu, Image } from "semantic-ui-react"
 import { Link } from "react-router-dom"; 
 
 const Navbar = () => (
   <Menu>
-    <Link to="/">
+    <Image src={require('../images/vivint_logo.jpg')} size='large' />
+    {/* <Link to="/">
       <Menu.Item>
         Home
       </Menu.Item>
@@ -13,7 +14,7 @@ const Navbar = () => (
       <Menu.Item>
         About
       </Menu.Item>
-    </Link>
+    </Link> */}
   </Menu>
 );
 

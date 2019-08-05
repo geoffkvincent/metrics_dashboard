@@ -1,7 +1,17 @@
 import React from 'react'
-import {Card} from 'semantic-ui-react'
+import { Card, Accordion, Icon } from 'semantic-ui-react'
 
 class DeviceStatus extends React.Component {
+  state = { activeIndex: 0 }
+
+  handleClick = (e, titleProps) => {
+    const { index } = titleProps
+    const { activeIndex } = this.state
+    const newIndex = activeIndex === index ? -1 : index
+
+    this.setState({ activeIndex: newIndex })
+  }
+
   render() {
     const { devices } = this.props
     return(
@@ -10,9 +20,16 @@ class DeviceStatus extends React.Component {
           <Card.Content>
             <Card.Header>Device Status</Card.Header>
             <Card.Content>
-              {devices.map(device =>
-                <Card.Description key={device.id}>{device.name}</Card.Description> 
-              )}
+              <Card.Description >
+                  <Accordion>
+                    {devices.map(device =>
+                      <Accordion.Title key={device.id} active={this.state.activeIndex === 0} index={0} onClick={this.handleClick}>
+                        <Icon name='dropdown'/>
+                        {device.name}
+                      </Accordion.Title>
+                    )}
+                  </Accordion>
+              </Card.Description> 
             </Card.Content>
           </Card.Content>
         </Card>
