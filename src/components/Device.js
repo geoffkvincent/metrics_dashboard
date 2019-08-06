@@ -33,8 +33,7 @@ class Device extends React.Component {
         {showDeviceContent ? 
           device.offline_history.map(h =>
             <ul>
-              <li>{moment(h.dateCreated).format("MMM Do YYYY")}</li>
-              <li>{h.event}</li>
+              <li>{`${h.event}:   ${moment(h.dateCreated).format("MMM Do YYYY, h:mm:ss a")}`}</li>
             </ul>
           )
           : 
