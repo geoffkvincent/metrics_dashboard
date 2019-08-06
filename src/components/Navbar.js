@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => (
   <Menu>
-    <Image src={require('../images/vivint_logo.jpg')} size='large' />
+    <Image src={require('../images/vivint_logo.jpg')} style={{height:'30px'}} />
     {/* <Link to="/">
       <Menu.Item>
         Home
