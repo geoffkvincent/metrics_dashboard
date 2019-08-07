@@ -8,7 +8,7 @@ class DeviceStatus extends React.Component {
     const { devices } = this.props
     return(
       <>
-        <Card>
+        <Card color='orange'>
           <Card.Content>
             <Card.Header>Device Status</Card.Header>
             <Card.Content>
