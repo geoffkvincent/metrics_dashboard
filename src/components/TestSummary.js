@@ -1,24 +1,43 @@
 import React from 'react'
 import {Accordion, Card} from 'semantic-ui-react'
 
-const TestSummary = ({summary}) => (
-  <Card color='orange'>
-    <Card.Content>
-      <Card.Header>Test Summary</Card.Header>
-      <Card.Description>
-        <Accordion fluid styled>
-          <Accordion.Title style={{backgroundColor: '#00B352', color: 'white'}}>{`PASS: ${summary.resultsByStatus.PASS}`}</Accordion.Title>
-          <Accordion.Title style={{backgroundColor: '#247549', color: 'white'}}>{`PASSED ON RETRY: ${summary.resultsByStatus.PASSED_ON_RETRY}`}</Accordion.Title>
-          <Accordion.Title style={{backgroundColor: '#f96565', color: 'white'}}>{`FAIL: ${summary.resultsByStatus.FAIL}`}</Accordion.Title>
-          <Accordion.Title style={{backgroundColor: '#ffd377', color: 'white'}}>{`BROKEN TEST: ${summary.resultsByStatus.BROKEN_TEST}`}</Accordion.Title>
-          <Accordion.Title style={{backgroundColor: '#6EA9FF', color: 'white'}}>{`NOT TESTED: ${summary.resultsByStatus.NOT_TESTED}`}</Accordion.Title>
-          <Accordion.Title style={{backgroundColor: '#A06744', color: 'white'}}>{`SKIPPED: ${summary.resultsByStatus.SKIPPED}`}</Accordion.Title>
-          <Accordion.Title style={{backgroundColor: '#c0c0c0', color: 'white'}}>{`NO RESULT: ${summary.resultsByStatus.NO_RESULT}`}</Accordion.Title>
-        </Accordion>
-      </Card.Description>
-    </Card.Content>
-  </Card>
-)
+function underscoresToSpaces(text) {
+    return text.replace(/_/g, ' ')
+}
+
+function statusToColor(status) {
+    switch (status) {
+        case 'PASS':
+            return '#00B352';
+        case 'PASSED_ON_RETRY':
+            return '#247549';
+        case 'FAIL':
+            return '#f96565';
+        case 'BROKEN_TEST':
+            return '#ffd377';
+        case 'NOT_TESTED':
+            return '#6EA9FF';
+        case 'SKIPPED':
+            return '#A06744';
+        case 'NO_RESULT':
+            return '#c0c0c0';
+        default:
+            return 'black'
+    }
+}
+
+const TestSummary = ({test_run}) => (
+    <Card color='orange'>
+        <Card.Content>
+            <Card.Header>{`${test_run.name} test summary`}</Card.Header>
+            <Card.Description>
+                <Accordion fluid styled>
+                    {test_run.summary.statusListOrdered.map(status => <Accordion.Title style={{backgroundColor: statusToColor(status), color: 'white'}}>{`${underscoresToSpaces(status)}: ${test_run.summary.resultsByStatus[status]}`}</Accordion.Title>)}
+                </Accordion>
+            </Card.Description>
+        </Card.Content>
+    </Card>
+);
 
 export default TestSummary
 

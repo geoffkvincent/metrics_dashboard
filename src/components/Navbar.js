@@ -1,11 +1,10 @@
 import React from "react";
-import { Menu, Image } from "semantic-ui-react"
-import { Link } from "react-router-dom"; 
+import {Image, Menu} from "semantic-ui-react"
 
 const Navbar = () => (
-  <Menu>
-    <Image src={require('../images/vth.png')} style={{height:'40px'}} />
-    {/* <Link to="/">
+    <Menu style={{height: '52px'}}>
+        <Image src={require('../images/vth.png')} style={{height: '30px', marginTop: '10px'}}/>
+        {/* <Link to="/">
       <Menu.Item>
         Home
       </Menu.Item>
@@ -15,7 +14,7 @@ const Navbar = () => (
         About
       </Menu.Item>
     </Link> */}
-  </Menu>
+    </Menu>
 );
 
 export default Navbar;
